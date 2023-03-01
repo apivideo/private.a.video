@@ -6,6 +6,20 @@ body {
   font-family: 'Inter';
 }
 
+#record {
+  border: 1px solid #A6B5CA;
+  background-color: #F1F1F9;
+  padding: 16px 24px;
+  border-radius: 8px;
+  color: #858585;
+  font-weight: 500;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
 #main {
   display: flex;
   max-height: 100vh;
@@ -81,11 +95,51 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #error {
   color: #cc0000;
+}
+
+#link-section > p {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-align: start;
+}
+#link-section > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#link-section > div > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 10px;
+  border: 1px solid #D4DDE9;
+  border-radius: 8px;
+}
+#link-section > div > div > span {
+  color: #394663;
+  padding: 4px 6px;
+  border-radius: 6px;
+}
+#link-section > div > span {
+  color: #394663;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+#link-section > div span {
+  cursor: pointer;
+  background-color: #D4DDE9;
+  transition: all 250ms ease-in-out;
+  font-size: 12px;
+  font-weight: 600;
+}
+#link-section > div span:hover {
+  background-color: #c5cdd7;
 }
 
 .hide {
