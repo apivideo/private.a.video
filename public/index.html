@@ -208,6 +208,7 @@
         fullLogo.classList.add('hide');
         miniLogo.classList.remove('hide');
         right.style.width = '100%';
+        video.setAttribute('style', 'margin-right: auto; margin-left: auto;')
       }
 
       function openNav() {
@@ -217,6 +218,7 @@
         chevronRight.classList.add('hide');
         chevronLeft.classList.remove('hide');
         right.style.removeProperty('width');
+        video.removeAttribute('style')
       }
     </script>
   </body>
