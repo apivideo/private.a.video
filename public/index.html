@@ -9,6 +9,7 @@
       rel="stylesheet"
     />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://unpkg.com/@api.video/media-recorder" defer></script>
     <script>
       var __nspid = 'isrtzw';
       var __nsptags = [];
@@ -89,7 +90,14 @@
       />
 
       <div id="right">
-        <button id="record"><img src="assets/record_grey.svg" />Start recording</button>
+        <video id="video"></video>
+        <button id="record" data-status="waiting">
+          <img class="grey" src="assets/record_grey.svg" />
+          <img class="red hide" src="assets/record_red.svg" />
+          <div class="spinner hide"></div>
+          <img class="check hide" src="assets/check.png" />
+          <span id="button-text">Start recording</span>
+        </button>
         <div id="link-section">
           <p>Link to video</p>
           <div>
@@ -97,7 +105,7 @@
               FooBar
               <span>COPY</span>
             </div>
-            <span>GENERATE A NEW TOKEN</span>
+            <span id="token-generator">GENERATE A NEW TOKEN</span>
           </div>
         </div>
         <p id="error" class="error"></p>
@@ -128,6 +136,49 @@
       const fullLogo = document.getElementById('full-logo');
       const miniLogo = document.getElementById('mini-logo');
       const right = document.getElementById('right');
+      const video = document.querySelector('#video');
+      const constraints = window.constraints = {
+        audio: true,
+        video: true
+      };
+      navigator.mediaDevices.getUserMedia(constraints).then((s) => {
+        stream = s;
+        video.srcObject = s;
+        video.play();
+      });
+      let stream, recorder;
+
+      window.addEventListener('load', function() {
+        document.getElementById('token-generator').addEventListener('click', function() {
+          console.log(this);
+        })
+        document.getElementById('record').addEventListener('click', async function() {
+          if (this.getAttribute('data-status') === 'waiting') {
+            this.setAttribute('data-status', 'recording');
+            this.querySelector("#button-text").innerHTML = 'Stop recording';
+            this.querySelector('.grey').classList.add('hide');
+            this.querySelector('.red').classList.remove('hide');
+            const data = await fetch('/video').then(r => r.json());
+            recorder = new ApiVideoMediaRecorder(stream, {
+              uploadToken: "toUSE8Mgr1d5OSCiyzTMeIc"
+            }); 
+            recorder.addEventListener("videoPlayable", function(event) {
+              document.getElementById("button-text").innerHTML = 'Playable';
+              document.querySelector(".spinner").classList.add('hide');
+              document.querySelector(".check").classList.remove('hide');
+            });
+            recorder.addEventListener("recordingStopped", function() {
+              document.querySelector(".spinner").classList.remove('hide');
+            });
+            recorder.start();
+          } else if (this.getAttribute('data-status') === 'recording') {
+            this.setAttribute('data-status', 'processing');
+            this.querySelector("#button-text").innerHTML = 'Processing';
+            this.querySelector('.red').classList.add('hide');
+            recorder.stop();
+          }
+        })
+      });
 
       function closeNav() {
         sidebar.style.width = '20';
