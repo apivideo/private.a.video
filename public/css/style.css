@@ -138,6 +138,9 @@ body {
   color: #cc0000;
 }
 
+#link-section {
+  max-width: 100%;
+}
 #link-section p {
   font-weight: 700;
   font-size: 14px;
@@ -219,7 +222,10 @@ body {
     display: none;
   }
   #right {
-    width: 100%;
+    width: 85%;
+  }
+  #record {
+    padding: 10px 15px;
   }
 }
 @media (min-width: 930px) {
