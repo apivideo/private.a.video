@@ -103,7 +103,7 @@
           <div>
             <div>
               <p id="player-link"></p>
-              <span>COPY</span>
+              <span id="copy">COPY</span>
             </div>
             <span id="token-generator">GENERATE A NEW TOKEN</span>
           </div>
@@ -146,29 +146,45 @@
         video.srcObject = s;
         video.play();
       });
-      let stream, recorder;
+      let stream, recorder, videoId;
 
       window.addEventListener('load', function() {
-        document.getElementById('token-generator').addEventListener('click', function() {
-          console.log(this);
+        // COPY VIDEO LINK
+        document.getElementById('copy').addEventListener('click', function() {
+          var copyText = document.getElementById('player-link').innerHTML;
+          navigator.clipboard.writeText(copyText);
+          this.innerHTML = 'COPIED';
+          setTimeout(() => {
+            this.innerHTML = 'COPY'
+          }, 2000);
         })
+
+        // REGENERATE PRIVATE TOKEN
+        document.getElementById('token-generator').addEventListener('click', async function() {
+          const data = await fetch('/video/' + videoId).then(r => r.json());
+          document.getElementById('player-link').innerHTML = data.video.assets.player;
+        })
+
+        // RECORD VIDEO
         document.getElementById('record').addEventListener('click', async function() {
           if (this.getAttribute('data-status') === 'waiting') {
             this.setAttribute('data-status', 'recording');
             this.querySelector('#button-text').innerHTML = 'Stop recording';
             this.querySelector('.grey').classList.add('hide');
             this.querySelector('.red').classList.remove('hide');
-            const data = await fetch('/create').then(r => r.json());
+            const data = await fetch('/video').then(r => r.json());
             recorder = new ApiVideoMediaRecorder(stream, {
               uploadToken: 'toUSE8Mgr1d5OSCiyzTMeIc',
               videoId: data.video.videoId
             }); 
-            recorder.addEventListener('videoPlayable', function(event) {
+            recorder.addEventListener('videoPlayable', async function(event) {
               document.getElementById('button-text').innerHTML = 'Playable';
               document.querySelector('.spinner').classList.add('hide');
               document.querySelector('.check').classList.remove('hide');
-              document.getElementById('link-section').classList.remove('hide')
-              document.getElementById('player-link').innerHTML = event.data.assets.player;
+              document.getElementById('link-section').classList.remove('hide');
+              videoId = event.data.videoId;
+              const data = await fetch('/video/' + event.data.videoId).then(r => r.json());
+              document.getElementById('player-link').innerHTML = data.video.assets.player;
             });
             recorder.addEventListener('recordingStopped', function() {
               document.querySelector('.spinner').classList.remove('hide');
