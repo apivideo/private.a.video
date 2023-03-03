@@ -72,7 +72,7 @@
               <li>On demand videos behind a pay wall</li>
               <li>P2P only videos</li>
               <li>Video for internal use only</li>
-              <li>Whats-app like “view once” video</li>
+              <li>Whats-app like "view once" video</li>
             </ul>
             <p>
               To learn more, read the tutorial or
@@ -98,11 +98,11 @@
           <img class="check hide" src="assets/check.png" />
           <span id="button-text">Start recording</span>
         </button>
-        <div id="link-section">
+        <div id="link-section" class="hide">
           <p>Link to video</p>
           <div>
             <div>
-              FooBar
+              <p id="player-link"></p>
               <span>COPY</span>
             </div>
             <span id="token-generator">GENERATE A NEW TOKEN</span>
@@ -117,7 +117,7 @@
               <li>On demand videos behind a pay wall</li>
               <li>P2P only videos</li>
               <li>Video for internal use only</li>
-              <li>Whats-app like “view once” video</li>
+              <li>Whats-app like "view once" video</li>
             </ul>
             <p>
               To learn more, read the tutorial or
@@ -155,25 +155,29 @@
         document.getElementById('record').addEventListener('click', async function() {
           if (this.getAttribute('data-status') === 'waiting') {
             this.setAttribute('data-status', 'recording');
-            this.querySelector("#button-text").innerHTML = 'Stop recording';
+            this.querySelector('#button-text').innerHTML = 'Stop recording';
             this.querySelector('.grey').classList.add('hide');
             this.querySelector('.red').classList.remove('hide');
-            const data = await fetch('/video').then(r => r.json());
+            const data = await fetch('/create').then(r => r.json());
             recorder = new ApiVideoMediaRecorder(stream, {
-              uploadToken: "toUSE8Mgr1d5OSCiyzTMeIc"
+              uploadToken: 'toUSE8Mgr1d5OSCiyzTMeIc',
+              videoId: data.video.videoId
             }); 
-            recorder.addEventListener("videoPlayable", function(event) {
-              document.getElementById("button-text").innerHTML = 'Playable';
-              document.querySelector(".spinner").classList.add('hide');
-              document.querySelector(".check").classList.remove('hide');
+            recorder.addEventListener('videoPlayable', function(event) {
+              document.getElementById('button-text').innerHTML = 'Playable';
+              document.querySelector('.spinner').classList.add('hide');
+              document.querySelector('.check').classList.remove('hide');
+              document.getElementById('link-section').classList.remove('hide')
+              document.getElementById('player-link').innerHTML = event.data.assets.player;
             });
-            recorder.addEventListener("recordingStopped", function() {
-              document.querySelector(".spinner").classList.remove('hide');
+            recorder.addEventListener('recordingStopped', function() {
+              document.querySelector('.spinner').classList.remove('hide');
             });
             recorder.start();
           } else if (this.getAttribute('data-status') === 'recording') {
+            this.classList.add('pointer-none')
             this.setAttribute('data-status', 'processing');
-            this.querySelector("#button-text").innerHTML = 'Processing';
+            this.querySelector('#button-text').innerHTML = 'Processing';
             this.querySelector('.red').classList.add('hide');
             recorder.stop();
           }

@@ -8,14 +8,14 @@ const PORT = process.env.PORT || 3000
 
 http.createServer(async function(req, res) {
 
-  if (req.url === "/video") {
+  if (req.url === "/create") {
     const client = new ApiVideoClient(({ apiKey: process.env.API_KEY }));
     const privateVideo = await client.videos.create({
       title: "My private video", 
       _public: false,
     });
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({data: privateVideo}));
+    res.end(JSON.stringify({video: privateVideo}));
   }
   else if(req.url === "/") {
     fs.readFile("./public/index.html", "UTF-8", function(err, html){

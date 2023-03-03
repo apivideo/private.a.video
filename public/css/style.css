@@ -138,11 +138,19 @@ body {
   color: #cc0000;
 }
 
-#link-section > p {
+#link-section p {
   font-weight: 700;
   font-size: 14px;
   margin-bottom: 8px;
   text-align: start;
+  max-width: 100%;
+}
+#link-section #player-link {
+  margin: 0;
+  font-weight: inherit;
+  overflow: scroll;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 #link-section > div {
   display: flex;
@@ -157,6 +165,7 @@ body {
   padding: 8px 12px;
   border: 1px solid #D4DDE9;
   border-radius: 8px;
+  max-width: 60%;
 }
 #link-section > div > div > span {
   color: #394663;
@@ -182,9 +191,11 @@ body {
 .hide {
   display: none;
 }
-
 .w-full {
   width: 100vw;
+}
+.pointer-none {
+  pointer-events: none;
 }
 
 @media (max-width: 929px) {
