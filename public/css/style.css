@@ -191,8 +191,21 @@ body {
   background-color: #c5cdd7;
 }
 
+#video-mask {
+  width: 100%;
+  max-width: 640;
+  height: 480;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  background-color: #F1F1F9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .hide {
-  display: none;
+  display: none !important;
 }
 .w-full {
   width: 100vw;

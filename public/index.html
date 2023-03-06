@@ -90,6 +90,10 @@
       />
 
       <div id="right">
+        <div id="video-mask" class="hide">
+          <img src="assets/video-off.svg" />
+          <p>Allow your browser to use the camera</p>
+        </div>
         <video id="video" muted></video>
         <button id="record" data-status="waiting">
           <img class="grey" src="assets/record_grey.svg" />
@@ -136,7 +140,10 @@
       const fullLogo = document.getElementById('full-logo');
       const miniLogo = document.getElementById('mini-logo');
       const right = document.getElementById('right');
-      const video = document.querySelector('#video');
+      const video = document.getElementById('video');
+      const videoMask = document.getElementById('video-mask');
+      const record = document.getElementById('record');
+      const error = document.getElementById('error')
       const constraints = window.constraints = {
         audio: true,
         video: true
@@ -149,6 +156,26 @@
       let stream, recorder, videoId;
 
       window.addEventListener('load', function() {
+        // PERMISSION
+        navigator.permissions.query({ name: "camera" })
+          .then(function(permissionStatus) {
+            permissionStatus.onchange = function() {
+              if (this.state === 'granted') {
+                record.classList.remove('pointer-none')
+                video.classList.remove('hide');
+                videoMask.classList.add('hide');
+              } else {
+                record.classList.add('pointer-none')
+                video.classList.add('pointer-none');
+              }
+            };
+            if (permissionStatus.state !== "granted") {
+              record.classList.add('pointer-none');
+              video.classList.add('hide');
+              videoMask.classList.remove('hide');
+            }
+          });
+
         // COPY VIDEO LINK
         document.getElementById('copy').addEventListener('click', function() {
           var copyText = document.getElementById('player-link').innerHTML;
@@ -166,13 +193,16 @@
         })
 
         // RECORD VIDEO
-        document.getElementById('record').addEventListener('click', async function() {
+        record.addEventListener('click', async function() {
           if (this.getAttribute('data-status') === 'waiting') {
+            error.innerHTML = '';
             this.setAttribute('data-status', 'recording');
             this.querySelector('#button-text').innerHTML = 'Stop recording';
             this.querySelector('.grey').classList.add('hide');
             this.querySelector('.red').classList.remove('hide');
-            const data = await fetch('/video').then(r => r.json());
+            const data = await fetch('/video')
+              .then(r => r.json())
+              .catch(() => error.innerHTML = 'An error occured. Check your API_KEY env value and your upload token.');
             recorder = new ApiVideoMediaRecorder(stream, {
               uploadToken: 'toUSE8Mgr1d5OSCiyzTMeIc',
               videoId: data.video.videoId
@@ -190,7 +220,8 @@
               document.querySelector('.spinner').classList.remove('hide');
             });
             recorder.start();
-          } else if (this.getAttribute('data-status') === 'recording') {
+          } 
+          else if (this.getAttribute('data-status') === 'recording') {
             this.classList.add('pointer-none')
             this.setAttribute('data-status', 'processing');
             this.querySelector('#button-text').innerHTML = 'Processing';
