@@ -163,19 +163,16 @@
           .then(function(permissionStatus) {
             permissionStatus.onchange = function() {
               if (this.state === 'granted') {
-                record.classList.remove('pointer-none')
-                record.classList.remove('disabled')
+                record.classList.remove('hide')
                 video.classList.remove('hide');
                 videoMask.classList.add('hide');
               } else {
-                record.classList.add('pointer-none')
-                record.classList.add('disabled')
+                record.classList.add('hide')
                 video.classList.add('pointer-none');
               }
             };
             if (permissionStatus.state !== "granted") {
-              record.classList.add('pointer-none');
-              record.classList.add('disabled');
+              record.classList.add('hide');
               video.classList.add('hide');
               videoMask.classList.remove('hide');
             }
@@ -242,6 +239,7 @@
 
       function closeNav() {
         sidebar.style.width = '20';
+        sidebar.style.minWidth = '0';
         content.classList.add('hide');
         chevronRight.classList.remove('hide');
         chevronLeft.classList.add('hide');
@@ -253,6 +251,7 @@
 
       function openNav() {
         sidebar.style.width = '400';
+        sidebar.style.minWidth = '400';
         content.classList.remove('hide');
         fullLogo.classList.remove('hide');
         chevronRight.classList.add('hide');

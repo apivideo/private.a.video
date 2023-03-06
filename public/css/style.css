@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   background-color: white;
   color: black;
@@ -37,15 +40,14 @@ body {
 
 #main {
   display: flex;
-  max-height: 100vh;
 }
 
 #sidebar {
   background-color: #4A0F70;
-  width: 400px;
+  width: 40%;
   overflow-x: hidden;
   transition: 0.3s;
-  max-height: 100%;
+  min-height: 100vh;
   padding: 24px;
   display: flex;
   align-items: flex-start;
@@ -104,13 +106,12 @@ body {
 }
 
 #right {
-  padding: 0 10%;
-  width: 50%;
-  height: 100vh;
+  padding: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 #video {
@@ -208,6 +209,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 0 60px;
 }
 
 .hide {
@@ -239,9 +241,6 @@ body {
   }
   #sidebar {
     display: none;
-  }
-  #right {
-    width: 85%;
   }
   #record {
     padding: 10px 15px;
