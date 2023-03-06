@@ -1,5 +1,5 @@
 [![badge](https://img.shields.io/twitter/follow/api_video?style=social)](https://twitter.com/intent/follow?screen_name=api_video)
-&nbsp; [![badge](https://img.shields.io/github/stars/apivideo/api.video-android-live-stream?style=social)](https://github.com/apivideo/api.video-android-live-stream)
+&nbsp; [![badge](https://img.shields.io/github/stars/apivideo/private.a.video?style=social)](https://github.com/apivideo/private.a.video)
 &nbsp; [![badge](https://img.shields.io/discourse/topics?server=https%3A%2F%2Fcommunity.api.video)](https://community.api.video)
 ![](https://github.com/apivideo/.github/blob/main/assets/apivideo_banner.png)
 <h1 align="center">TODO: PROJECT NAME</h1>
@@ -13,29 +13,19 @@ your app.
 - [Table of contents](#table-of-contents)
 - [Project description](#project-description)
 - [Getting started](#getting-started)
-    - [Installation](#installation)
-    - [Code sample](#code-sample)
-- [Documentation](#documentation)
+  - [Installation](#installation)
 - [Dependencies](#dependencies)
 - [FAQ](#faq)
 
 # Project description
 
-This library is **TODO**
+[private.a.video](https://private.a.video) uses an [upload token](https://docs.api.video/reference/post_upload-tokens), the api.video [media recorder](https://github.com/apivideo/api.video-typescript-media-recorder) and [Node.js client](https://github.com/apivideo/api.video-nodejs-client) to record and upload a private video.
 
 # Getting started
 
 ## Installation
 
-**TODO**
-
-## Code sample
-
-**TODO**
-
-# Documentation
-
-**TODO**
+Go to [private.a.video](https://private.a.video) to test our live demo or clone this project and add your API key as an `.env` variable to run it locally with the `npm run start command`.
 
 # Dependencies
 
@@ -43,13 +33,9 @@ We are using external library
 
 | Plugin | README |
 | ------ | ------ |
-| **TODO** [Link to project]() | **TODO** [Link to README]() |
-
-# Sample application
-
-**TODO**
+| [dotenv](https://www.npmjs.com/package/dotenv) | [Link to README](https://github.com/motdotla/dotenv) |
 
 # FAQ
 
 If you have any questions, ask us in the [community](https://community.api.video). Or
-use [issues](**TODO** link to github project issues)..
+use [issues](https://github.com/apivideo/private.a.video/issues).
