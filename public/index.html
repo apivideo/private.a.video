@@ -67,7 +67,7 @@
         <div id="content">
           <h1>Private a video</h1>
           <div id="description">
-            <p>The video you are going to record will only be accessible to one person (expect if you regenerate a token). Try opening it in a first tab then in a second one to see it action.<br /> Some of our clients use this to build:</p>
+            <p>The video you are going to record will only be <b>accessible to one person</b> (expect if you regenerate a token). Try opening it in a first tab then in a second one to see it action.<br /> Some of our clients use this to build:</p>
             <ul>
               <li>On demand videos behind a pay wall</li>
               <li>P2P only videos</li>
@@ -75,8 +75,8 @@
               <li>Whats-app like "view once" video</li>
             </ul>
             <p>
-              To learn more, read the tutorial or
-              <a target="_blank" href="https://github.com/apivideo/private.a.video">check out the source code on GitHub.</a>
+              To learn more, 
+              <a target="_blank" href="https://github.com/apivideo/private.a.video">check out the source code on GitHub</a> and read our <a target="_blank" href="https://api.video/blog/product-updates/video-access-management-how-to-create-deliver-and-manage-private-videos-and-what">blog article about private videos</a>.
             </p>
           </div>
         </div>
@@ -90,18 +90,20 @@
       />
 
       <div id="right">
-        <div id="video-mask" class="hide">
-          <img src="assets/video-off.svg" />
-          <p>Allow your browser to use the camera</p>
+        <div>
+          <div id="video-mask" class="hide">
+            <img src="assets/video-off.svg" />
+            <p>Allow your browser to use the camera</p>
+          </div>
+          <video id="video" muted></video>
+          <button id="record" data-status="waiting">
+            <img class="grey" src="assets/record_grey.svg" />
+            <img class="red hide" src="assets/record_red.svg" />
+            <div class="spinner hide"></div>
+            <img class="check hide" src="assets/check.png" />
+            <span id="button-text">Start recording</span>
+          </button>
         </div>
-        <video id="video" muted></video>
-        <button id="record" data-status="waiting">
-          <img class="grey" src="assets/record_grey.svg" />
-          <img class="red hide" src="assets/record_red.svg" />
-          <div class="spinner hide"></div>
-          <img class="check hide" src="assets/check.png" />
-          <span id="button-text">Start recording</span>
-        </button>
         <div id="link-section" class="hide">
           <p>Link to video</p>
           <div>
@@ -116,7 +118,7 @@
         <div id="mobile-description">
           <h1>Upload a video</h1>
           <div id="description">
-            <p>The video you are going to record will only be accessible to one person (expect if you regenerate a token). Try opening it in a first tab then in a second one to see it action.<br /> Some of our clients use this to build:</p>
+            <p>The video you are going to record will only be <b>accessible to one person</b> (expect if you regenerate a token). Try opening it in a first tab then in a second one to see it action.<br /> Some of our clients use this to build:</p>
             <ul>
               <li>On demand videos behind a pay wall</li>
               <li>P2P only videos</li>
@@ -124,8 +126,8 @@
               <li>Whats-app like "view once" video</li>
             </ul>
             <p>
-              To learn more, read the tutorial or
-              <a target="_blank" href="https://github.com/apivideo/private.a.video">check out the source code on GitHub.</a>
+              To learn more, 
+              <a target="_blank" href="https://github.com/apivideo/private.a.video">check out the source code on GitHub</a> and read our <a target="_blank" href="https://api.video/blog/product-updates/video-access-management-how-to-create-deliver-and-manage-private-videos-and-what">blog article about private videos</a>.
             </p>
           </div>
         </div>

@@ -18,6 +18,7 @@ body {
   align-items: center;
   gap: 10px;
   margin-bottom: 16px;
+  margin-left: auto;
   cursor: pointer;
 }
 #record.disabled {
@@ -109,7 +110,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 #video {
@@ -143,7 +144,8 @@ body {
 }
 
 #link-section {
-  max-width: 100%;
+  width: 100%;
+  max-width: 640;
 }
 #link-section p {
   font-weight: 700;
@@ -172,7 +174,7 @@ body {
   padding: 8px 12px;
   border: 1px solid #D4DDE9;
   border-radius: 8px;
-  max-width: 60%;
+  max-width: 67%;
 }
 #link-section > div > div > span {
   color: #394663;
