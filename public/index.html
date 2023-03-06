@@ -198,6 +198,7 @@
         // RECORD VIDEO
         record.addEventListener('click', async function() {
           if (this.getAttribute('data-status') === 'waiting') {
+            record.classList.add('pointer-none');
             error.innerHTML = '';
             this.setAttribute('data-status', 'recording');
             this.querySelector('#button-text').innerHTML = 'Stop recording';
@@ -223,6 +224,7 @@
               document.querySelector('.spinner').classList.remove('hide');
             });
             recorder.start();
+            record.classList.remove('pointer-none');
           } 
           else if (this.getAttribute('data-status') === 'recording') {
             this.classList.add('pointer-none')
