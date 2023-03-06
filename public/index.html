@@ -162,15 +162,18 @@
             permissionStatus.onchange = function() {
               if (this.state === 'granted') {
                 record.classList.remove('pointer-none')
+                record.classList.remove('disabled')
                 video.classList.remove('hide');
                 videoMask.classList.add('hide');
               } else {
                 record.classList.add('pointer-none')
+                record.classList.add('disabled')
                 video.classList.add('pointer-none');
               }
             };
             if (permissionStatus.state !== "granted") {
               record.classList.add('pointer-none');
+              record.classList.add('disabled');
               video.classList.add('hide');
               videoMask.classList.remove('hide');
             }
