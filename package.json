@@ -1,0 +1,31 @@
+{
+  "name": "private.a.video",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apivideo/private.a.video.git"
+  },
+  "keywords": [
+    "video",
+    "private"
+  ],
+  "author": "api.video",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apivideo/private.a.video/issues"
+  },
+  "homepage": "https://github.com/apivideo/private.a.video#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "@api.video/nodejs-client": "^2.3.2",
+    "dotenv": "^16.0.3"
+  }
+}
