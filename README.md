@@ -25,7 +25,7 @@ your app.
 
 ## Installation
 
-Go to [private.a.video](https://private.a.video) to test our live demo or clone this project and add your API key as an `.env` variable to run it locally with the `npm run start command`.
+Go to [private.a.video](https://private.a.video) to test our live demo or clone this project and add your API key as an `.env` variable to run it locally with the `npm run start` command.
 
 # Dependencies
 
