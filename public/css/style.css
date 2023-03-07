@@ -159,15 +159,20 @@ body {
 #link-section #player-link {
   margin: 0;
   font-weight: inherit;
-  overflow: scroll;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  max-width: 58%;
 }
 #link-section > div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 16px;
   font-size: 14px;
+  border: 1px solid #D4DDE9;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 #link-section > div > div {
   display: flex;
@@ -178,15 +183,10 @@ body {
   border-radius: 8px;
   max-width: 67%;
 }
-#link-section > div > div > span {
+#link-section > div > span {
   color: #394663;
   padding: 4px 6px;
   border-radius: 6px;
-}
-#link-section > div > span {
-  color: #394663;
-  padding: 4px 10px;
-  border-radius: 10px;
 }
 #link-section > div span {
   cursor: pointer;
