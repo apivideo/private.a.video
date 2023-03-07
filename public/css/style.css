@@ -56,6 +56,7 @@ body {
   position: relative;
   overflow-y: hidden;
   color: #FFFFFF;
+  min-width: 400px;
 }
 
 #mini-logo {
